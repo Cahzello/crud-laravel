@@ -9,7 +9,12 @@ class MahasiswaController extends Controller
 {
     public function index()
     {
-       return "Tabel mahasiswa di sini";
+        /*
+            Read Data mahasiswa
+         */
+
+        $mahasiswas = Mahasiswa::all();
+        return view('mahasiswa.index', ['mahasiswas' => $mahasiswas]);
     }
 
     public function create()
@@ -36,5 +41,11 @@ class MahasiswaController extends Controller
         $mahasiswa->save();
 
         return "Data berhasil diinput ke database";
+    }
+
+    public function show($mahasiswa)
+    {
+        $result = Mahasiswa::find($mahasiswa);
+        return view('mahasiswa.show', ['mahasiswa' => $result]);
     }
 }
